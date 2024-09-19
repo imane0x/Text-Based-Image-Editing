@@ -1,7 +1,7 @@
-gradio== 3.50.2
+gradio==3.50.2
 diffusers==0.30.3
 transformers==4.38.2
 scipy==1.13.0
 segment-anything==1.0
-torch== 2.1.2+cu118
+torch
 autodistill-grounding-dino==0.1.4
