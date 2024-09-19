@@ -90,7 +90,7 @@ iface = gr.Interface(
         gr.Slider(minimum=0, maximum=1, value=0.2, label="Text Threshold"),
     ],
     outputs=gr.Image(type="pil"),
-    title="Image Editing with SAM and Stable Diffusion",
+    title="Image Inpainting",
     description="Upload an image and specify your editing criteria to see the edited result."
 )
 
