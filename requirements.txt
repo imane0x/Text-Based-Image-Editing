@@ -1,0 +1,7 @@
+gradio
+diffusers
+transformers
+scipy
+segment-anything
+torch
+autodistill-grounding-dino
