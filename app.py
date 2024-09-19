@@ -13,9 +13,9 @@ from torchvision import transforms as T
 # Set up models
 device = "cuda"
 model_type = "vit_h"
-predictor = SamPredictor(sam_model_registry[model_type](checkpoint="/home/im21/text_based_img_editing/sam_vit_h_4b8939.pth").to(device=device))
+predictor = SamPredictor(sam_model_registry[model_type](checkpoint="text_based_img_editing/sam_vit_h_4b8939.pth").to(device=device))
 pipe = StableDiffusionInpaintPipeline.from_pretrained("stabilityai/stable-diffusion-2-inpainting", torch_dtype=torch.float16).to(device)
-groundingdino_model = load_model("/home/im21/text_based_img_editing/GroundingDINO_SwinT_OGC.py", "/home/im21/text_based_img_editing/groundingdino_swint_ogc.pth")
+groundingdino_model = load_model("text_based_img_editing/GroundingDINO_SwinT_OGC.py", "text_based_img_editing/groundingdino_swint_ogc.pth")
 
 def show_mask(mask, image, random_color=True):
 
