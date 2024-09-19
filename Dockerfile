@@ -4,6 +4,13 @@ FROM python:3.9-slim
 # Set the working directory in the container
 WORKDIR /app
 
+# Install wget
+RUN apt-get update && apt-get install -y wget && rm -rf /var/lib/apt/lists/*
+
+# Use wget to download files
+RUN wget https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
+RUN wget https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha/groundingdino_swint_ogc.pth
+
 # Copy requirements.txt into the container
 COPY requirements.txt .
 
