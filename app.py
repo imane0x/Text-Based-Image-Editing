@@ -25,8 +25,6 @@ def show_mask(mask, image, random_color=True):
         color = np.array([30/255, 144/255, 255/255, 0.6])
     h, w = mask.shape[-2:]
     mask_image = mask.reshape(h, w, 1) * color.reshape(1, 1, -1)    
-   # mask_img = mask_image.cpu().numpy()
-  #  new_img = image.cpu().numpy()
     annotated_frame_pil = Image.fromarray(image).convert("RGBA")
     mask_image_pil = Image.fromarray((mask_image.cpu().numpy() * 255).astype(np.uint8)).convert("RGBA")
     return np.array(Image.alpha_composite(annotated_frame_pil, mask_image_pil))
@@ -74,8 +72,6 @@ def load_image(image):
     image = np.asarray(image)
     return image, image_transformed
 def gradio_interface(image, item, prompt, box_threshold, text_threshold):
-    # image_tensor = transforms.ToTensor()(image)
-    # image_tensor = image_tensor.to(device)
     edited_image = edit_image(image, item, prompt, box_threshold, text_threshold)
     return edited_image
 
