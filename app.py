@@ -5,7 +5,7 @@ import torch
 from segment_anything import SamPredictor, sam_model_registry
 from diffusers import StableDiffusionInpaintPipeline
 from groundingdino.util.inference import load_model, predict, annotate
-from GroundingDINO.groundingdino.util import box_ops
+from groundingdino.util import box_ops
 import numpy as np
 from torchvision import transforms
 from torchvision.transforms import ToPILImage
@@ -13,9 +13,9 @@ from torchvision import transforms as T
 # Set up models
 device = "cuda"
 model_type = "vit_h"
-predictor = SamPredictor(sam_model_registry[model_type](checkpoint="Text-Based-Image-Editing/sam_vit_h_4b8939.pth").to(device=device))
+predictor = SamPredictor(sam_model_registry[model_type](checkpoint="sam_vit_h_4b8939.pth").to(device=device))
 pipe = StableDiffusionInpaintPipeline.from_pretrained("stabilityai/stable-diffusion-2-inpainting", torch_dtype=torch.float16).to(device)
-groundingdino_model = load_model("Text-Based-Image-Editing/GroundingDINO_SwinT_OGC.py", "Text-Based-Image-Editing/groundingdino_swint_ogc.pth")
+groundingdino_model = load_model("GroundingDINO_SwinT_OGC.py", "groundingdino_swint_ogc.pth")
 
 def show_mask(mask, image, random_color=True):
 
