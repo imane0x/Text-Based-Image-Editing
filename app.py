@@ -10,7 +10,6 @@ import numpy as np
 from torchvision import transforms
 from torchvision.transforms import ToPILImage
 from torchvision import transforms as T
-# Set up models
 device = "cuda"
 model_type = "vit_h"
 predictor = SamPredictor(sam_model_registry[model_type](checkpoint="sam_vit_h_4b8939.pth").to(device=device))
@@ -51,7 +50,6 @@ def edit_image(image, item, prompt, box_threshold, text_threshold):
         boxes=new_boxes,
         multimask_output=False,
     )
-    #img_annotated_mask = show_mask(masks[0][0].cpu(),annotate(image_source=src, boxes=boxes, logits=logits, phrases=phrases)[...,::-1])
     edited_image =pipe(prompt=prompt,
         image=image.resize((512, 512)),
         mask_image=Image.fromarray(masks[0][0].cpu().numpy()).resize((512, 512))
@@ -60,22 +58,19 @@ def edit_image(image, item, prompt, box_threshold, text_threshold):
 def load_image(image):
     transform = T.Compose(
         [
-            T.Resize(800),  # Resize to a fixed size (800, 800) or use RandomResizedCrop for random sizes
+            T.Resize(800),  
             T.ToTensor(),
             T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
         ]
     )
-    # to_pil = ToPILImage()
-    # image_source = to_pil(image)
-    # image = np.asarray(image_source)
-    image_transformed = transform(image)  # Transform the PIL image directly
+    image_transformed = transform(image) 
     image = np.asarray(image)
     return image, image_transformed
 def gradio_interface(image, item, prompt, box_threshold, text_threshold):
     edited_image = edit_image(image, item, prompt, box_threshold, text_threshold)
     return edited_image
 
-# Gradio app
+
 iface = gr.Interface(
     fn=gradio_interface,
     inputs=[
