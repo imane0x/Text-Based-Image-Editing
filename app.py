@@ -82,7 +82,7 @@ iface = gr.Interface(
     ],
     outputs=gr.Image(type="pil"),
     title="Image Inpainting",
-    description="Upload an image and specify your editing criteria to see the edited result."
+    description="Upload an image and specify your editing criteria to see the result."
 )
 
 
