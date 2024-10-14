@@ -18,8 +18,6 @@ Before you begin, ensure you have the following installed on your system:
 
 ### 1. Build the Docker Image
 
-To build the Docker image for the inpainting project, run the following command in the project root directory (where the `Dockerfile` is located):
-
 ```bash
 docker build -t image_editing .
 ```
